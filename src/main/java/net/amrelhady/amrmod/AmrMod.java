@@ -1,6 +1,7 @@
 package net.amrelhady.amrmod;
 
 import com.mojang.logging.LogUtils;
+import net.amrelhady.amrmod.enchantment.ModEnchantments;
 import net.amrelhady.amrmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,6 +30,7 @@ public class AmrMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModEnchantments.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

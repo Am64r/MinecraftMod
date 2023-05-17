@@ -5,6 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -16,14 +17,23 @@ public class ModItems {
 
     public static final RegistryObject<Item> BULAT_APPLE = ITEMS.register("bulat_apple",
             () -> new Item(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(4)
+                    .food(new FoodProperties.Builder()
+                            .nutrition(4)
                             .saturationMod(1.2f)
                             .effect( () -> new MobEffectInstance(MobEffects.JUMP, 6000, 30), 1.0f)
+                            .effect( () -> new MobEffectInstance(MobEffects.WATER_BREATHING, 6000, 1), 1.0f)
+                            .effect( () -> new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 6000, 1), 1.0f)
+                            .effect( () -> new MobEffectInstance(MobEffects.NIGHT_VISION, 6000, 1), 1.0f)
                             .alwaysEat()
                             .build()
                     )
 
-            ));
+            ){
+        public boolean hasEnchantmentGlint(ItemStack stack){
+            return true;
+        }
+            }
+    );
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
